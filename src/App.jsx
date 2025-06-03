@@ -1,7 +1,16 @@
-import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Home from "./Components/Home";
 
 const App = () => {
-  return <div className="">App</div>;
+  document.title = "Movix | Homepage";
+  return (
+    <div className="w-screen h-screen bg-[#1F1E24] flex">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/* <Route path="" */}
+      </Routes>
+    </div>
+  );
 };
 
 export default App;

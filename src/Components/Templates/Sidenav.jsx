@@ -9,19 +9,31 @@ const Sidenav = () => {
       </h1>
       <nav className="flex flex-col text-zinc-400 text-lg gap-3">
         <h1 className="text-white text-lg font-semibold mt-5 ">New Feeds</h1>
-        <Link className="hover:bg-[#6556CD] hover:text-white duration-300 rounded-lg p-3">
+        <Link
+          to={"/trending"}
+          className="hover:bg-[#6556CD] hover:text-white duration-300 rounded-lg p-3"
+        >
           <i className="ri-fire-fill mr-2"></i>
           Trending
         </Link>
-        <Link className="hover:bg-[#6556CD] hover:text-white duration-300 rounded-lg p-3">
+        <Link
+          to={"/popular"}
+          className="hover:bg-[#6556CD] hover:text-white duration-300 rounded-lg p-3"
+        >
           <i className="ri-bard-fill mr-2"></i>
           Popular
         </Link>
-        <Link className="hover:bg-[#6556CD] hover:text-white duration-300 rounded-lg p-3">
+        <Link
+          to={"/movie"}
+          className="hover:bg-[#6556CD] hover:text-white duration-300 rounded-lg p-3"
+        >
           <i className="ri-movie-2-line mr-2"></i>
           Movies
         </Link>
-        <Link className="hover:bg-[#6556CD] hover:text-white duration-300 rounded-lg p-3">
+        <Link
+          to={"/tvshow"}
+          className="hover:bg-[#6556CD] hover:text-white duration-300 rounded-lg p-3"
+        >
           <i className="ri-tv-2-fill mr-2"></i>
           Tv Shows
         </Link>

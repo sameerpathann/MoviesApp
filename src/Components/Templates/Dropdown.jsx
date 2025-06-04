@@ -1,12 +1,11 @@
 import { useDispatch } from "react-redux";
-import { filterTrendingMovie } from "../../Store/reducers/TrendingmovieSlice";
 
-const Dropdown = ({ title, options }) => {
+const Dropdown = ({ title, options, action }) => {
   const dispatch = useDispatch();
   return (
     <div className="select">
       <select
-        onChange={(e) => dispatch(filterTrendingMovie(e.target.value))}
+        onChange={(e) => dispatch(action(e.target.value))}
         defaultValue="0"
         name="format"
         id="format"

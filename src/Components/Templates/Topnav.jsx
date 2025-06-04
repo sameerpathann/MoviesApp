@@ -11,15 +11,15 @@ const Topnav = () => {
     dispatch(filterMovie(query));
   }, [query]);
   return (
-    <div className="h-16 relative flex justify-center items-center">
-      <div className="h-full w-2/3 flex items-center justify-center gap-10">
+    <div className="h-16 relative flex justify-center items-center w-full">
+      <div className="h-full w-[90%] flex items-center justify-center gap-10">
         <i className="text-2xl text-zinc-400 cursor-pointer ri-search-line"></i>
         <input
           value={query}
           onChange={(e) => Setquery(e.target.value)}
-          className="bg-transparent  outline-none border-none w-3/4  ring-[#6556CD] focus:ring-1 duration-200  p-3 font-semibold text-zinc-300 rounded-lg"
+          className="bg-transparent  outline-none border-none w-full  ring-[#6556CD] focus:ring-1 duration-200  p-3 font-semibold text-zinc-300 rounded-lg"
           type="text"
-          placeholder="Search anything"
+          placeholder="Search Movies and Tv Shows"
         />
         <i
           onClick={() => Setquery("")}
@@ -28,7 +28,7 @@ const Topnav = () => {
           }`}
         ></i>
       </div>
-      <div className="w-1/2 left-[25%] right-0 bg-zinc-200  max-h-72 absolute top-[100%] overflow-y-scroll overflow-x-hidden hide-scrollbar">
+      <div className="w-[70%] left-[15%] right-0 bg-zinc-200  max-h-72 absolute top-[100%] overflow-y-scroll overflow-x-hidden hide-scrollbar">
         {filteredMovies.map((m, i) => (
           <Link
             key={i}

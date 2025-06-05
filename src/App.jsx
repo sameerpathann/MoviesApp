@@ -4,6 +4,7 @@ import Trending from "./Components/Trending";
 import Popular from "./Components/Templates/Popular";
 import Movie from "./Components/Templates/Movie";
 import Tvshow from "./Components/Templates/Tvshow";
+import People from "./Components/Templates/People";
 
 const App = () => {
   document.title = "Movix | Homepage";
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/popular" element={<Popular />} />
         <Route path="/movie" element={<Movie />} />
         <Route path="/tvshow" element={<Tvshow />} />
+        <Route path="/peoples" element={<People />} />
       </Routes>
     </div>
   );

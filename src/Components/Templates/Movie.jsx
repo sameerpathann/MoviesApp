@@ -19,7 +19,7 @@ const Movie = () => {
               onClick={() => Navigate(-1)}
               className="hover:text-[#6556CD] transition-all duration-75 active:-translate-x-[5px] scale-1 active:scale-95 text-zinc-400 font-semibold cursor-pointer text-2xl ri-arrow-left-line"
             ></i>
-            <h1 className="text-2xl text-zinc-400 font-semibold">Popular</h1>
+            <h1 className="text-2xl text-zinc-400 font-semibold">Movies</h1>
           </div>
           <div className="w-[80%] h-full flex items-center justify-center">
             <Topnav />

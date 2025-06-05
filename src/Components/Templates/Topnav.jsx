@@ -28,7 +28,7 @@ const Topnav = () => {
           }`}
         ></i>
       </div>
-      <div className="w-[70%] left-[15%] right-0 bg-zinc-200  max-h-72 absolute top-[100%] overflow-y-scroll overflow-x-hidden hide-scrollbar">
+      <div className="w-[70%] left-[15%] right-0 bg-zinc-200 z-10 max-h-72 absolute top-[100%] overflow-y-scroll overflow-x-hidden hide-scrollbar">
         {filteredMovies.map((m, i) => (
           <Link
             key={i}

@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import Topnav from "./Topnav";
-import Dropdown from "./Dropdown";
 import Cards from "./Cards";
 import { useNavigate } from "react-router-dom";
 
@@ -11,34 +10,28 @@ const Tvshow = () => {
   );
 
   const Navigate = useNavigate();
+
   return (
-    <div>
-      {" "}
-      <div className="w-screen h-screen px-5 overflow-x-hidden overflow-y-auto">
-        <div className="w-full h-[15%] flex items-center">
-          <div className="w-[100%] h-full flex items-center gap-4">
-            <div className="h-full w-[20%] flex items-center gap-4">
-              {" "}
-              <i
-                onClick={() => Navigate(-1)}
-                className="hover:text-[#6556CD] transition-all duration-75 active:-translate-x-[5px] scale-1 active:scale-95 text-zinc-400 font-semibold cursor-pointer text-2xl ri-arrow-left-line"
-              ></i>
-              <h1 className="text-2xl text-zinc-400 font-semibold">Tv Shows</h1>
-            </div>
-            <div className="w-[80%] h-full flex items-center justify-center">
-              <Topnav />
-            </div>
-          </div>
-          <div className="w-[30%] h-full flex items-center justify-center">
-            {/* <Dropdown
-            title={"Filter"}
-            options={["movie", "tv"]}
-            action={filterPopular}
-          /> */}
-          </div>
+    <div className="w-screen h-screen px-4 sm:px-5 overflow-x-hidden overflow-y-auto">
+      <div className="w-full py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-6">
+        <div className="flex items-center gap-3 w-full sm:w-auto">
+          <i
+            onClick={() => Navigate(-1)}
+            className="ri-arrow-left-line text-2xl text-zinc-400 hover:text-[#6556CD] cursor-pointer transition-transform active:scale-95"
+          ></i>
+          <h1 className="text-xl sm:text-2xl text-zinc-400 font-semibold">
+            TV Shows
+          </h1>
         </div>
-        <Cards data={trendingMovies} />
+
+        <div className="w-full sm:flex-1">
+          <Topnav />
+        </div>
+
+        <div className="hidden sm:flex items-center justify-center"></div>
       </div>
+
+      <Cards data={trendingMovies} />
     </div>
   );
 };

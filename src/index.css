@@ -4,13 +4,15 @@
 /* Primary color #1F1E24 */
 /* Secondary Color #6556CD */
 /* styles.css */
-.hide-scrollbar::-webkit-scrollbar {
+/* CSS to hide scrollbar (works on Webkit & Firefox) */
+.scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
+
 * {
   margin: 0;
   padding: 0;

@@ -14,7 +14,7 @@ const HorizontalCards = () => {
             className="w-52 h-full bg-zinc-900 hover:bg-zinc-800 cursor-pointer transition-all duration-200 img-hover animate-scrollX overflow-hidden rounded"
           >
             <img
-              className="w-full h-40 object-cover object-right-top rounded img transition-all duration-100"
+              className="w-full min-h-40 object-cover object-right-top rounded img transition-all duration-100"
               src={
                 m.backdrop_path
                   ? `https://image.tmdb.org/t/p/original/${

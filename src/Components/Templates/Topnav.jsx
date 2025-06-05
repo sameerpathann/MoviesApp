@@ -1,52 +1,86 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { filterMovie } from "../../Store/reducers/MoviesList";
 
 const Topnav = () => {
-  const [query, Setquery] = useState("");
+  const [query, setQuery] = useState("");
   const dispatch = useDispatch();
   const { filteredMovies } = useSelector((state) => state.MoviesReducer);
+  const containerRef = useRef(null);
+
   useEffect(() => {
-    dispatch(filterMovie(query));
-  }, [query]);
+    const handler = setTimeout(() => {
+      dispatch(filterMovie(query.trim()));
+    }, 300);
+
+    return () => clearTimeout(handler);
+  }, [query, dispatch]);
+
   return (
-    <div className="h-16 relative flex justify-center items-center w-full">
-      <div className="h-full w-[90%] flex items-center justify-center gap-10">
-        <i className="text-2xl text-zinc-400 cursor-pointer ri-search-line"></i>
-        <input
-          value={query}
-          onChange={(e) => Setquery(e.target.value)}
-          className="bg-transparent  outline-none border-none w-full  ring-[#6556CD] focus:ring-1 duration-200  p-3 font-semibold text-zinc-300 rounded-lg"
-          type="text"
-          placeholder="Search Movies and Tv Shows"
-        />
-        <i
-          onClick={() => Setquery("")}
-          className={`text-zinc-400 text-2xl cursor-pointer ri-close-fill ${
-            query.length > 0 ? `opacity-100` : `opacity-0`
-          }`}
-        ></i>
-      </div>
-      <div className="w-[70%] left-[15%] right-0 bg-zinc-200 z-10 max-h-72 absolute top-[100%] overflow-y-scroll overflow-x-hidden hide-scrollbar">
-        {filteredMovies.map((m, i) => (
-          <Link
-            key={i}
-            className="flex items-center justify-start p-5 border-b-2 border-zinc-100 font-semibold text-sm hover:text-black text-zinc-600 hover:bg-zinc-300 duration-200 w-full gap-5"
-          >
-            <img
-              className="w-20 h-20 rounded-2xl object-cover"
-              src={
-                m.backdrop_path
-                  ? `https://image.tmdb.org/t/p/original/${m.backdrop_path}`
-                  : `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBu0USCFZwKnomMof7OSN2zIbPlEiV-bmMAw&s`
-              }
-              alt="movie img"
-            />
-            <span>{m.title || m.original_title || m.original_name}</span>
-          </Link>
-        ))}
-      </div>
+    <div
+      ref={containerRef}
+      className="relative flex items-center w-full max-w-xl mx-auto h-16"
+      role="search"
+      aria-label="Search Movies and TV Shows"
+    >
+      <i
+        className="ri-search-line text-2xl text-zinc-400 mr-3"
+        aria-hidden="true"
+      />
+
+      <input
+        type="search"
+        placeholder="Search Movies and TV Shows"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        className="flex-grow bg-transparent text-zinc-300 font-semibold rounded-lg p-3 focus:outline-none focus:ring-1 focus:ring-[#6556CD] placeholder:text-zinc-500 transition duration-200"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+        aria-activedescendant=""
+        autoComplete="off"
+      />
+
+      <button
+        type="button"
+        onClick={() => setQuery("")}
+        className={`ml-2 text-zinc-400 text-2xl focus:outline-none ${
+          query.length === 0 ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+        aria-label="Clear search input"
+      ></button>
+
+      {query.length > 0 && filteredMovies.length > 0 && (
+        <ul
+          id="search-results"
+          role="listbox"
+          className="absolute top-full left-0 right-0 mt-1 max-h-72 overflow-y-auto bg-zinc-50 shadow-lg rounded-md z-20 hide-scrollbar"
+        >
+          {filteredMovies.map((m, i) => (
+            <li key={i} role="option" tabIndex={-1}>
+              <Link
+                to={`/movie/${m.id}`}
+                className="flex items-center gap-4 p-4 border-b border-zinc-200 text-zinc-700 hover:bg-zinc-200 focus:bg-zinc-200 focus:outline-none"
+              >
+                <img
+                  src={
+                    m.backdrop_path
+                      ? `https://image.tmdb.org/t/p/w92/${m.backdrop_path}`
+                      : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBu0USCFZwKnomMof7OSN2zIbPlEiV-bmMAw&s"
+                  }
+                  alt={m.title || m.original_title || "Movie Poster"}
+                  className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span className="truncate font-semibold">
+                  {m.title || m.original_title || m.original_name}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
